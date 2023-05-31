@@ -6,14 +6,14 @@ const productProfitArray = [
   { name: "Product D", profit: 5 },
   { name: "Product E", profit: 88 },
   { name: "Product F", profit: 29 },
+  { name: "Product G", profit: 1 },
+  { name: "Product H", profit: -1 },
 ];
 
 let productMax = { name: "", profit: "" };
 let productMin = { name: "", profit: "" };
-let productCloseToZero = { name: "", profit: "" };
-let productGreaterThanZero = { name: "", profit: "" };
-
-let empty = new Array();
+let closestProfit = Infinity;
+let closestProduct = "";
 
 function topProduct(input) {
   if (input.length === 0) {
@@ -27,6 +27,7 @@ function topProduct(input) {
     }
   }
 }
+
 function bottomProduct(input) {
   if (input.length === 0) {
     console.log("No Data");
@@ -45,11 +46,17 @@ function zeroProfitProduct(input) {
     console.log("No Data");
   } else {
     for (let i = 0; i < input.length; i++) {
-      if (input[i].profit <= Math.abs(productCloseToZero.profit)) {
-        productCloseToZero = input[i];
+      const profit = input[i].profit;
+
+      if (profit >= 0) {
+        if (profit <= Math.abs(closestProfit)) {
+          closestProfit = profit;
+          closestProduct = input[i].name;
+        }
       }
     }
-    console.log(productCloseToZero.name);
+
+    console.log(closestProduct);
   }
 }
 

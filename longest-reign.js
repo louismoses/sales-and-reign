@@ -11,8 +11,6 @@ const dynastyReign = [
   { "Louis Dynasty": "MpMMMMM" },
 ];
 
-// longestDynasty () to return the name of the dynasty which reigns the longest in an array of key-value pair dynastyReign
-
 function longestDynasty(yearReigns) {
   let topYear = 0;
   let topDynasty = "";
@@ -32,11 +30,11 @@ function longestDynasty(yearReigns) {
         topDynasty = Object.keys(yearReigns[i])[0];
       }
     }
+
     return topDynasty;
   }
 }
 
-// convertYear() to translate given year in roman numerals to integer
 const romanNumeral = { M: 1000, D: 500, C: 100, L: 50, X: 10, V: 5, I: 1 };
 
 function convertYear(romanNumber) {
@@ -51,14 +49,22 @@ function convertYear(romanNumber) {
       i < romanNumber.length - 1 &&
       romanNumeral[romanNumber[i]] < romanNumeral[romanNumber[i + 1]]
     ) {
-      numInteger -= romanNumeral[romanNumber[i]];
+      if (
+        (romanNumber[i] === "I" && ["V", "X"].includes(romanNumber[i + 1])) ||
+        (romanNumber[i] === "X" && ["L", "C"].includes(romanNumber[i + 1])) ||
+        (romanNumber[i] === "C" && ["D", "M"].includes(romanNumber[i + 1]))
+      ) {
+        numInteger -= romanNumeral[romanNumber[i]];
+      } else {
+        return "Invalid";
+      }
     } else {
       numInteger += romanNumeral[romanNumber[i]];
     }
   }
-  console.log(romanNumber, numInteger);
+
   return numInteger;
 }
 
 console.log(longestDynasty(dynastyReign));
-// console.log(dynastyReign);
+console.log(convertYear("CMXIX"));
