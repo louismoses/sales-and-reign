@@ -64,5 +64,3 @@ function convertYear(romanNumber) {
 }
 
 console.log(longestDynasty(dynastyReign));
-console.log(convertYear("CMXIX"));
-console.log(dynastyReign);
