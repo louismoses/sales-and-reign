@@ -22,10 +22,7 @@ function longestDynasty(yearReigns) {
       let dynastyRoman = Object.values(yearReigns[i])[0];
       let romanYear = convertYear(dynastyRoman);
 
-      if (romanYear === "Invalid") {
-        yearReigns.splice(i, 1);
-        i--;
-      } else if (romanYear >= topYear) {
+      if (romanYear >= topYear) {
         topYear = romanYear;
         topDynasty = Object.keys(yearReigns[i])[0];
       }
@@ -68,3 +65,4 @@ function convertYear(romanNumber) {
 
 console.log(longestDynasty(dynastyReign));
 console.log(convertYear("CMXIX"));
+console.log(dynastyReign);
