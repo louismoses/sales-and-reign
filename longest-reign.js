@@ -1,4 +1,5 @@
 "use strict";
+
 const dynastyReign = [
   { "San Dynasty": "MXLI" },
   { "Viloria Dynasty": "MCCCIIII" },
@@ -7,8 +8,6 @@ const dynastyReign = [
   { "Maiko Dynasty": "MDCLXIV" },
   { "Paul Dynasty": "MCMXLIX" },
   { "Andre Dynasty": "MMMXICX" },
-  { "Moses Dynasty": "pMMMMMM" },
-  { "Louis Dynasty": "MpMMMMM" },
 ];
 
 function longestDynasty(yearReigns) {
@@ -22,6 +21,10 @@ function longestDynasty(yearReigns) {
       let dynastyRoman = Object.values(yearReigns[i])[0];
       let romanYear = convertYear(dynastyRoman);
 
+      if (romanYear === "Invalid") {
+        continue; // Skip invalid year reigns
+      }
+
       if (romanYear >= topYear) {
         topYear = romanYear;
         topDynasty = Object.keys(yearReigns[i])[0];
@@ -32,7 +35,21 @@ function longestDynasty(yearReigns) {
   }
 }
 
-const romanNumeral = { M: 1000, D: 500, C: 100, L: 50, X: 10, V: 5, I: 1 };
+const romanNumeral = {
+  M: 1000,
+  CM: 900,
+  D: 500,
+  CD: 400,
+  C: 100,
+  XC: 90,
+  L: 50,
+  XL: 40,
+  X: 10,
+  IX: 9,
+  V: 5,
+  IV: 4,
+  I: 1,
+};
 
 function convertYear(romanNumber) {
   let numInteger = 0;
