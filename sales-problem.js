@@ -16,7 +16,7 @@ let productGreaterThanZero = { name: "", profit: "" };
 let empty = new Array();
 
 function topProduct(input) {
-  if (input === empty) {
+  if (input.length === 0) {
     console.log("No Data");
   } else {
     for (let i = 0; i < input.length; i++) {
@@ -28,7 +28,7 @@ function topProduct(input) {
   }
 }
 function bottomProduct(input) {
-  if (input === empty) {
+  if (input.length === 0) {
     console.log("No Data");
   } else {
     for (let i = 0; i < input.length; i++) {
@@ -41,7 +41,7 @@ function bottomProduct(input) {
 }
 
 function zeroProfitProduct(input) {
-  if (input === empty) {
+  if (input.length === 0) {
     console.log("No Data");
   } else {
     for (let i = 0; i < input.length; i++) {

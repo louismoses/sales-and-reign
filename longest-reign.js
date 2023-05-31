@@ -7,48 +7,70 @@ const dynastyReign = [
   { "Maiko Dynasty": "MDCLXIV" },
   { "Paul Dynasty": "MCMXLIX" },
   { "Andre Dynasty": "MMMXICX" },
-  { "Moses Dynasty": "MMMMMMMM" },
+  { "Moses Dynasty": "pMMMMMM" },
+  { "Louis Dynasty": "MpMMMMM" },
+  { "zer Dynasty": "MMMMMMc" },
 ];
 
 // longestDynasty () to return the name of the dynasty which reigns the longest in an array of key-value pair dynastyReign
-let topYear = 0;
-let topDynasty = "";
+
 function longestDynasty(yearReigns) {
-  for (let i = 0; i < yearReigns.length; i++) {
-    let dynastyRoman = Object.values(yearReigns[i])[0];
-    let romanYear = convertYear(dynastyRoman);
-    if (topYear <= romanYear) {
-      topYear = romanYear;
-      topDynasty = Object.keys(yearReigns[i])[0];
+  let topYear = 0;
+  let topDynasty = "";
+  if (yearReigns.length === 0) {
+    console.log("No Data");
+  } else {
+    for (let i = 0; i < yearReigns.length; i++) {
+      let dynastyRoman = Object.values(yearReigns[i])[0];
+      let romanYear = convertYear(dynastyRoman);
+
+      if (topYear <= romanYear) {
+        topYear = romanYear;
+        topDynasty = Object.keys(yearReigns[i])[0];
+      }
+      if (romanYear === "Invalid") {
+        dynastyReign.splice(i, 1);
+        i--;
+      }
     }
+
+    console.log(topYear);
+    console.log(topDynasty);
+    console.log(dynastyReign);
   }
-  console.log(topYear);
-  console.log(topDynasty);
 }
 
+const romanNumeral = ["M", "D", "C", "L", "X", "V", "I"];
 // convertYear() to translate given year in roman numerals to integer
-function convertYear(romanLetter) {
+function convertYear(romanNumber) {
+  // ++++++++++++++++++++
+  if (romanNumber[0] !== "M") {
+    return "Invalid";
+  }
+  // ++++++++++++++++++++
+
   let numInteger = 0;
-  for (let i = 0; i < romanLetter.length; i++) {
-    if (romanLetter[i] === "M") {
+
+  for (let i = 0; i < romanNumber.length; i++) {
+    if (romanNumber[i] === "M") {
       numInteger += 1000;
     }
-    if (romanLetter[i] === "D") {
+    if (romanNumber[i] === "D") {
       numInteger += 500;
     }
-    if (romanLetter[i] === "C") {
+    if (romanNumber[i] === "C") {
       numInteger += 100;
     }
-    if (romanLetter[i] === "L") {
+    if (romanNumber[i] === "L") {
       numInteger += 50;
     }
-    if (romanLetter[i] === "X") {
+    if (romanNumber[i] === "X") {
       numInteger += 10;
     }
-    if (romanLetter[i] === "V") {
+    if (romanNumber[i] === "V") {
       numInteger += 5;
     }
-    if (romanLetter[i] === "I") {
+    if (romanNumber[i] === "I") {
       numInteger += 1;
     }
   }
